@@ -1,0 +1,6 @@
+{
+  "name": "Flying Spaghetti Wisdom",
+  "description": "Official GitHub landing page for Flying Spaghetti Wisdom by GlazerDev, featuring gospel wisdom, daily quotes, interactive space animations with flying meatballs, and legal documents.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
