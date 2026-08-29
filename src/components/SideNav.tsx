@@ -19,12 +19,14 @@ interface SideNavProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenSupport: () => void;
+  onOpenDoc: (doc: 'privacy' | 'terms' | 'support') => void;
 }
 
 export const SideNav: React.FC<SideNavProps> = ({
   isOpen,
   onClose,
   onOpenSupport,
+  onOpenDoc,
 }) => {
   const navItems = [
     { label: 'Home & Overview', href: '#home', icon: Compass },
@@ -34,10 +36,10 @@ export const SideNav: React.FC<SideNavProps> = ({
     { label: 'App Screenshots', href: '#screenshots', icon: Smartphone },
   ];
 
-  const legalItems = [
-    { label: 'Support & Inquiries', href: '/support.html', icon: HelpCircle, isSpecial: true },
-    { label: 'Privacy Policy', href: '/privacy.html', icon: Shield, isExternal: true },
-    { label: 'Terms of Service', href: '/terms.html', icon: FileText, isExternal: true },
+  const legalItems: Array<{ label: string; doc: 'support' | 'privacy' | 'terms'; icon: React.ElementType; isSpecial?: boolean }> = [
+    { label: 'Support & Inquiries', doc: 'support', icon: HelpCircle, isSpecial: true },
+    { label: 'Privacy Policy', doc: 'privacy', icon: Shield },
+    { label: 'Terms of Service', doc: 'terms', icon: FileText },
   ];
 
   return (
@@ -117,15 +119,14 @@ export const SideNav: React.FC<SideNavProps> = ({
               {legalItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <a
+                  <button
                     key={item.label}
-                    href={item.href}
+                    type="button"
                     onClick={() => {
-                      if (item.label === 'Support & Inquiries') {
-                        onClose();
-                      }
+                      onClose();
+                      onOpenDoc(item.doc);
                     }}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white transition-all group ${
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white transition-all group ${
                       item.isSpecial
                         ? 'bg-orange-500/10 border border-orange-500/30 text-orange-300 font-semibold'
                         : 'hover:bg-slate-800/50'
@@ -136,7 +137,7 @@ export const SideNav: React.FC<SideNavProps> = ({
                       <span className="text-sm">{item.label}</span>
                     </div>
                     <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-slate-300" />
-                  </a>
+                  </button>
                 );
               })}
             </div>

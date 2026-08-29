@@ -142,7 +142,7 @@ export const SupportModal: React.FC<SupportModalProps> = ({ isOpen, onClose }) =
 
             <div className="pt-2 flex items-center justify-between gap-4">
               <a
-                href="/support.html"
+                href="support.html"
                 className="text-xs text-slate-400 hover:text-orange-400 underline"
               >
                 Open dedicated Support page &rarr;
