@@ -4,9 +4,10 @@ import { Mail, Shield, FileText, HelpCircle, Heart } from 'lucide-react';
 
 interface FooterProps {
   onOpenSupport: () => void;
+  onOpenDoc?: (doc: 'privacy' | 'terms' | 'support') => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenSupport }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenSupport, onOpenDoc }) => {
   return (
     <footer className="relative border-t border-slate-800/80 bg-[#04060e] text-slate-400 py-16 z-10">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -78,31 +79,34 @@ export const Footer: React.FC<FooterProps> = ({ onOpenSupport }) => {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="/privacy.html"
-                  className="flex items-center gap-2 hover:text-orange-400 transition-colors"
+                <button
+                  type="button"
+                  onClick={() => onOpenDoc ? onOpenDoc('privacy') : null}
+                  className="flex items-center gap-2 hover:text-orange-400 transition-colors text-left cursor-pointer"
                 >
                   <Shield className="w-4 h-4 text-orange-400" />
                   <span>Privacy Policy</span>
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="/terms.html"
-                  className="flex items-center gap-2 hover:text-orange-400 transition-colors"
+                <button
+                  type="button"
+                  onClick={() => onOpenDoc ? onOpenDoc('terms') : null}
+                  className="flex items-center gap-2 hover:text-orange-400 transition-colors text-left cursor-pointer"
                 >
                   <FileText className="w-4 h-4 text-orange-400" />
                   <span>Terms of Service</span>
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="/support.html"
-                  className="flex items-center gap-2 hover:text-orange-400 transition-colors"
+                <button
+                  type="button"
+                  onClick={() => onOpenDoc ? onOpenDoc('support') : onOpenSupport()}
+                  className="flex items-center gap-2 hover:text-orange-400 transition-colors text-left cursor-pointer"
                 >
                   <HelpCircle className="w-4 h-4 text-orange-400" />
                   <span>Support Page</span>
-                </a>
+                </button>
               </li>
               <li>
                 <a
@@ -124,11 +128,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenSupport }) => {
             &copy; 2026 GlazerDev. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="/privacy.html" className="text-slate-300 hover:text-orange-400 transition-colors">Privacy</a>
+            <button
+              type="button"
+              onClick={() => onOpenDoc ? onOpenDoc('privacy') : null}
+              className="text-slate-300 hover:text-orange-400 transition-colors cursor-pointer"
+            >
+              Privacy
+            </button>
             <span>•</span>
-            <a href="/terms.html" className="text-slate-300 hover:text-orange-400 transition-colors">Terms</a>
+            <button
+              type="button"
+              onClick={() => onOpenDoc ? onOpenDoc('terms') : null}
+              className="text-slate-300 hover:text-orange-400 transition-colors cursor-pointer"
+            >
+              Terms
+            </button>
             <span>•</span>
-            <a href="/support.html" className="text-slate-300 hover:text-orange-400 transition-colors">Support</a>
+            <button
+              type="button"
+              onClick={() => onOpenDoc ? onOpenDoc('support') : onOpenSupport()}
+              className="text-slate-300 hover:text-orange-400 transition-colors cursor-pointer"
+            >
+              Support
+            </button>
             <span>•</span>
             <span className="text-orange-400 font-semibold">Ramen!</span>
           </div>

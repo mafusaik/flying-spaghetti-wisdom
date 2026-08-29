@@ -10,10 +10,12 @@ import { AppScreenshots } from './components/AppScreenshots';
 import { Footer } from './components/Footer';
 import { SupportModal } from './components/SupportModal';
 import { StoreModal } from './components/StoreModal';
+import { LegalModal } from './components/LegalModal';
 
 export default function App() {
   const [isSideNavOpen, setIsSideNavOpen] = useState<boolean>(false);
   const [isSupportOpen, setIsSupportOpen] = useState<boolean>(false);
+  const [activeLegalDoc, setActiveLegalDoc] = useState<'privacy' | 'terms' | 'support' | null>(null);
   const [storeModalPlatform, setStoreModalPlatform] = useState<string | null>(null);
 
   const handleOpenStoreModal = (platform: string) => {
@@ -33,6 +35,7 @@ export default function App() {
       <Navbar
         onToggleSideNav={() => setIsSideNavOpen(true)}
         onOpenSupport={() => setIsSupportOpen(true)}
+        onOpenDoc={(doc) => setActiveLegalDoc(doc)}
       />
 
       {/* Side Navigation Bar Drawer */}
@@ -40,6 +43,7 @@ export default function App() {
         isOpen={isSideNavOpen}
         onClose={() => setIsSideNavOpen(false)}
         onOpenSupport={() => setIsSupportOpen(true)}
+        onOpenDoc={(doc) => setActiveLegalDoc(doc)}
       />
 
       {/* Main One-Page Content */}
@@ -64,7 +68,16 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer onOpenSupport={() => setIsSupportOpen(true)} />
+      <Footer
+        onOpenSupport={() => setIsSupportOpen(true)}
+        onOpenDoc={(doc) => setActiveLegalDoc(doc)}
+      />
+
+      {/* Legal and Support Viewer Modal */}
+      <LegalModal
+        doc={activeLegalDoc}
+        onClose={() => setActiveLegalDoc(null)}
+      />
 
       {/* Support & Contact Dialog Modal */}
       <SupportModal

@@ -5,9 +5,10 @@ import { Menu, Sparkles, BookOpen, Download, Mail, HelpCircle, Shield, FileText 
 interface NavbarProps {
   onToggleSideNav: () => void;
   onOpenSupport: () => void;
+  onOpenDoc?: (doc: 'privacy' | 'terms' | 'support') => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onToggleSideNav, onOpenSupport }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onToggleSideNav, onOpenSupport, onOpenDoc }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -62,13 +63,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSideNav, onOpenSupport }
           <a href="#screenshots" className="hover:text-orange-400 transition-colors">
             Screenshots
           </a>
-          <a
-            href="/support.html"
-            className="hover:text-orange-400 transition-colors flex items-center gap-1.5 text-orange-300 font-semibold"
+          <button
+            type="button"
+            onClick={() => onOpenDoc ? onOpenDoc('support') : onOpenSupport()}
+            className="hover:text-orange-400 transition-colors flex items-center gap-1.5 text-orange-300 font-semibold cursor-pointer"
           >
             <HelpCircle className="w-3.5 h-3.5" />
             Support
-          </a>
+          </button>
         </nav>
 
         {/* Action Controls & Mobile Hamburger */}
