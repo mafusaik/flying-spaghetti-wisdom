@@ -14,19 +14,6 @@
 
 [✨ View Live App](https://mafusaik.github.io/flying-spaghetti-wisdom/) • [📜 The Gospel](#-the-sacred-gospel) • [🚀 Quick Start](#-quick-start) • [🛸 Features](#-features) • [🛡️ Privacy & Support](#-support--privacy)
 
----
-
-```
-             .---.
-            /     \
-           | () () |    "Don't fear the unknown.
-            \  -  /      It may be pasta."
-             /|||\
-            / ||| \     — His Noodly Benevolence
-           /  |||  \
-          '---'''---'
-```
-
 </div>
 
 ---
